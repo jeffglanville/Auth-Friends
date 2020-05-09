@@ -26,22 +26,25 @@ class NewFriend extends Component {
                     <input
                         type='text'
                         name='name'
+                        placeholder='Name'
                         value={this.state.name}
                         onChange={this.handleChange}
                     />
                     <input
                         type='text'
                         name='age'
+                        placeholder='Age'
                         value={this.state.age}
                         onChange={this.handleChange}
                     />
                     <input
                         type='text'
                         name='email'
+                        placeholder='Email'
                         value={this.state.email}
                         onChange={this.handleChange}
                     />
-                    <button>Please Log In</button>
+                    <button>Add Friend</button>
                 </form>
             </div>
         )
