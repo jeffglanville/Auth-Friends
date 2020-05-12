@@ -11,14 +11,17 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Link to="/login">Login</Link>
-        <Link to="/protected">Friends</Link>
-        <Link to="/">NewFriend</Link>
+        <div className="link-wrapper">
+          <nav>
+            <Link id="link" to="/login">Login</Link>
+            <Link id="link" to="/protected">Friends</Link>
+            <Link id="link" to="/newFriend">NewFriend</Link>
+          </nav>
+        </div>
         <Switch>
           <PrivateRoute exact path="/protected" component={FriendsList} />
-          <PrivateRoute exact path="/" component={NewFriend} />
-          <Route path="/login" component={LoginForm} />
-          <Route component={LoginForm} />
+          <PrivateRoute exact path="/newFriend" component={NewFriend} />
+          <Route path="/" component={LoginForm} />
         </Switch>
       </div>
     </Router>

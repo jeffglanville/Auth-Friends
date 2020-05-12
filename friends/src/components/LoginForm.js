@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import axiosWithAuth from '../util/axiosWithAuth';
 
+import './LoginForm.css';
+
 class LoginForm extends Component {
     state = {
         credentials: {
@@ -35,17 +37,21 @@ class LoginForm extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.login}>
+                <form className='login_form' onSubmit={this.login}>
                     <input
+                        className='input'
                         type='text'
                         name='username'
                         value={this.state.credentials.username}
+                        placeholder='UserName'
                         onChange={this.handleChange}
                     />
                     <input
+                        className='input'
                         type='password'
                         name='password'
                         value={this.state.credentials.password}
+                        placeholder='Password'
                         onChange={this.handleChange}
                     />
                     <button>Please Log In</button>

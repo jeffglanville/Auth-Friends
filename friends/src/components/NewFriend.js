@@ -1,54 +1,68 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
+import axiosWithAuth from '../util/axiosWithAuth';
+import './NewFriend.css';
 
-class NewFriend extends Component {
-    state = {
+const NewFriend = () => {
+    const [friend,setFriend] = useState({
         friends: {
+            id: Date.now(),
             name: "",
             age: "",
             email: ""
         }
-    }
+    })
 
-    handleChange = e => {
-        this.setState({
-            friend: [{
-                ...this.state.friends,
-                [e.target.name]: e.target.value
-            }]
+    const handleChange = e => {
+        setFriend({
+            ...friend,
+            [e.target.name]: e.target.value
         })
     };
 
-
-    render() {
+    const handleSubmit = e => {
+        e.preventDefault();
+        axiosWithAuth()
+        .post('/friends', friend)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        setFriend({ id: "", name: "", age: "", email: "" });
+      };
         return (
             <div>
-                <form onSubmit={this.login}>
+                <form className= 'friend_form' onSubmit={handleSubmit}>
                     <input
+                        className='friend_input'
                         type='text'
                         name='name'
                         placeholder='Name'
-                        value={this.state.name}
-                        onChange={this.handleChange}
+                        value={friend.name}
+                        onChange={handleChange}
                     />
                     <input
+                        className='friend_input'
                         type='text'
                         name='age'
                         placeholder='Age'
-                        value={this.state.age}
-                        onChange={this.handleChange}
+                        value={friend.age}
+                        onChange={handleChange}
                     />
                     <input
+                        className='friend_input'
                         type='text'
                         name='email'
                         placeholder='Email'
-                        value={this.state.email}
-                        onChange={this.handleChange}
+                        value={friend.email}
+                        onChange={handleChange}
                     />
                     <button>Add Friend</button>
                 </form>
             </div>
         )
     }
-}
+
 
 export default NewFriend;
